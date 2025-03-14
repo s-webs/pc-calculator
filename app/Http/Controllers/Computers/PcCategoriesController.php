@@ -78,7 +78,7 @@ class PcCategoriesController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('pc-categories.index')->with('success', 'Категория успешно обновлена!');
+        return redirect()->route('pc-categories.index')->with('message', 'Категория успешно обновлена!');
     }
 
     /**
@@ -88,6 +88,6 @@ class PcCategoriesController extends Controller
     {
         PcCategory::query()->findOrFail($id)->delete();
 
-        return redirect()->route('pc-categories.index')->with('success', 'Категория успешно удалена!');
+        return redirect()->route('pc-categories.index')->with('message', 'Категория успешно удалена!');
     }
 }

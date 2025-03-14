@@ -33,7 +33,7 @@ onMounted(() => {
         showNotification.value = true;
         setTimeout(() => {
             showNotification.value = false;
-        }, 1500);
+        }, 3000);
     }
 });
 
@@ -193,7 +193,7 @@ const logout = () => {
             <!-- Page Heading -->
             <header v-if="$slots.header" class="bg-white shadow">
                 <div v-if="showNotification">
-                    <div class="absolute top-[10px] md:top-[50px] right-[10px] md:right-[50px] bg-white p-4 rounded-md flex items-center justify-between shadow-lg border">
+                    <div class="fixed top-[10px] md:top-[50px] right-[10px] md:right-[50px] bg-white p-4 rounded-md flex items-center justify-between shadow-lg border">
                         <div class="mr-[20px] font-semibold">{{ $page.props.flash.message }}</div>
                         <div @click="showNotification = false" class="w-[25px] h-[25px] text-gray-300 rounded-full flex items-center justify-center cursor-pointer border">X</div>
                     </div>
