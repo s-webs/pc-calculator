@@ -8,7 +8,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import Dashboard from "@/Pages/Dashboard.vue";
-import {PhArticle, PhCpu, PhHorse, PhHouse} from "@phosphor-icons/vue";
+import {PhArticle, PhCpu, PhDesktopTower, PhHorse, PhHouse} from "@phosphor-icons/vue";
 
 defineProps({
     title: String,
@@ -32,8 +32,8 @@ const routes = [
     },
     {
         name: 'Сборки ПК',
-        route: 'pc-components.index',
-        icon: PhCpu
+        route: 'pc-builds.index',
+        icon: PhDesktopTower
     },
 ]
 
@@ -244,9 +244,9 @@ const logout = () => {
 
             <div class="fixed bottom-0 w-full">
                 <div class="bg-blue-400 w-full flex items-center justify-between py-[10px] rounded-tl-[15px] rounded-tr-[15px]">
-                    <Link v-for="route in routes" :key="route.id" class="text-white font-semibold text-center mx-[10px]">
-                        <component :is="route.icon" :size="32" class="mx-auto py-0" />
-                        <span class="text-[10px]">{{ route.name }}</span>
+                    <Link :href="route(item.route)" v-for="item in routes" :key="route.id" class="text-white font-semibold text-center mx-[10px]">
+                        <component :is="item.icon" :size="32" class="mx-auto py-0" />
+                        <span class="text-[10px]">{{ item.name }}</span>
                     </Link>
                 </div>
             </div>

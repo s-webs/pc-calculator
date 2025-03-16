@@ -29,7 +29,6 @@ const handleInput = (field, value) => {
 }
 
 function submit() {
-    console.log(form)
     router.post(route('pc-components.store'), form)
 }
 

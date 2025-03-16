@@ -18,4 +18,5 @@ Route::middleware([
     })->name('dashboard');
     Route::resource('/pc-categories', \App\Http\Controllers\Computers\PcCategoriesController::class)->names('pc-categories');
     Route::resource('/pc-components', \App\Http\Controllers\Computers\PcComponentsController::class)->names('pc-components');
+    Route::resource('/pc-builds', \App\Http\Controllers\Computers\PcBuildController::class)->names('pc-builds');
 });
