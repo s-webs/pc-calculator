@@ -13,4 +13,9 @@ class PcCategory extends Model
     {
         $query->where('user_id', auth()->id());
     }
+
+    public function components(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PcComponent::class, 'pc_category_id');
+    }
 }

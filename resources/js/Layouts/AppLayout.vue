@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, watch} from 'vue';
 import {Head, Link, router, usePage} from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -22,28 +22,36 @@ const routes = [
         name: 'Категории ПК',
         route: 'pc-categories.index',
     },
+    {
+        name: 'Компоненты ПК',
+        route: 'pc-components.index',
+    },
 ]
 
 const showingNavigationDropdown = ref(false);
 
 const showNotification = ref(false);
+const notificationMessage = ref(null);
 
 onMounted(() => {
     if (usePage().props.flash.message) {
         showNotification.value = true;
+        notificationMessage.value = usePage().props.flash.message;
         setTimeout(() => {
             showNotification.value = false;
         }, 3000);
     }
 });
 
-const switchToTeam = (team) => {
-    router.put(route('current-team.update'), {
-        team_id: team.id,
-    }, {
-        preserveState: false,
-    });
-};
+watch(() => usePage().props.flash.message, (newMessage) => {
+    if (newMessage) {
+        showNotification.value = true;
+        notificationMessage.value = newMessage;
+        setTimeout(() => {
+            showNotification.value = false;
+        }, 3000);
+    }
+});
 
 const logout = () => {
     router.post(route('logout'));
@@ -194,7 +202,7 @@ const logout = () => {
             <header v-if="$slots.header" class="bg-white shadow">
                 <div v-if="showNotification">
                     <div class="fixed top-[10px] md:top-[50px] right-[10px] md:right-[50px] bg-white p-4 rounded-md flex items-center justify-between shadow-lg border">
-                        <div class="mr-[20px] font-semibold">{{ $page.props.flash.message }}</div>
+                        <div class="mr-[20px] font-semibold">{{ notificationMessage }}</div>
                         <div @click="showNotification = false" class="w-[25px] h-[25px] text-gray-300 rounded-full flex items-center justify-center cursor-pointer border">X</div>
                     </div>
                 </div>
