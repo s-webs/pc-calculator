@@ -19,17 +19,20 @@ const form = reactive({
     sale_price: null
 });
 
-// Добавляем компонент в массив
+
 function addComponent() {
     const component = findComponentById(selectedComponent.id);
     if (component) {
         form.components.push(component);
-        selectedComponent.id = null; // Очищаем select
+        form.sale_price = Number(form.sale_price) + (component.sale_price || 0); // Приводим к числу
+        selectedComponent.id = null;
     }
 }
 
-// Удаляем компонент из сборки
+// Удаляем компонент
 function removeComponent(index) {
+    const removedComponent = form.components[index];
+    form.sale_price = Number(form.sale_price) - (removedComponent.sale_price || 0); // Приводим к числу
     form.components.splice(index, 1);
 }
 

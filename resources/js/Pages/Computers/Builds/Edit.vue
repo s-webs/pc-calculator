@@ -26,23 +26,26 @@ onMounted(() => {
         form.image = props.build.image;
         form.name = props.build.name;
         form.components = Array.isArray(props.build.components)
-            ? props.build.components // Если это массив, просто заполняем
-            : JSON.parse(props.build.components); // Если это JSON строка, парсим
-        form.sale_price = props.build.sale_price;
+            ? props.build.components
+            : JSON.parse(props.build.components);
+        form.sale_price = props.build.sale_price || 0; // Убедимся, что значение не null
     }
 });
 
-// Добавляем компонент в сборку
+// Добавляем компонент
 function addComponent() {
     const component = findComponentById(selectedComponent.id);
     if (component) {
         form.components.push(component);
+        form.sale_price = Number(form.sale_price) + (component.sale_price || 0); // Приводим к числу
         selectedComponent.id = null;
     }
 }
 
 // Удаляем компонент
 function removeComponent(index) {
+    const removedComponent = form.components[index];
+    form.sale_price = Number(form.sale_price) - (removedComponent.sale_price || 0); // Приводим к числу
     form.components.splice(index, 1);
 }
 

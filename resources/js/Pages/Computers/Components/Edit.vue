@@ -73,7 +73,7 @@ function submit() {
                         </div>
                         <div class="mb-4">
                             <label for="sale_price">Цена продажи</label>
-                            <input id="sale_price" :value="form.sale_price" @input="handleInput('sale_price', $event.target.value)" type="number" class="w-full">
+                            <input id="sale_price" :value="form.sale_price" @input="handleInput('sale_price', $event.target.value)" type="number" class="w-full" required>
                         </div>
                         <div class="mb-4">
                             <label for="quantity">Количество (в наличии)</label>
