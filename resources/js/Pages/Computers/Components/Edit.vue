@@ -42,7 +42,7 @@ function submit() {
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Редактировать компонент ПК
+                Редактировать компонент "{{ component.name }}"
             </h2>
         </template>
 
@@ -50,7 +50,7 @@ function submit() {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
                     <div>
-                        <Link :href="route('pc-categories.index')" class="block px-[30px] py-[10px] bg-gray-300 text-white font-semibold">Назад</Link>
+                        <Link :href="route('pc-components.index')" class="block px-[30px] py-[10px] bg-gray-300 text-white font-semibold">Назад</Link>
                     </div>
                     <form @submit.prevent="submit" class="mt-[30px]">
                         <div class="mb-4">
